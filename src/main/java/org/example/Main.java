@@ -1,7 +1,6 @@
 package org.example;
 
 import MyExceptions.CustomException;
-import org.example.Array.Array;
 import org.example.stack.StackWithoutCollections;
 
 public class Main {
