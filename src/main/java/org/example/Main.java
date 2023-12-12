@@ -1,64 +1,44 @@
 package org.example;
 
+import MyExceptions.CustomException;
 import org.example.Array.Array;
-import org.example.MyExceptions.CustomException;
-import org.example.stack.EasyStack;
-import org.example.stack.Stack;
+import org.example.stack.StackWithoutCollections;
 
 public class Main {
     public static void main(String[] args) {
 
-        Array array = new Array();
-        array.add(2);
-        array.add(3);
-        array.add(5);
-        array.add(-6);
+        StackWithoutCollections stack = new StackWithoutCollections();
+        stack.push(1);
+        stack.push(65);
+        stack.push(-564);
+        stack.push(52);
 
-        System.out.println(array);
+        System.out.println(stack);
 
-//        EasyStack stack = new EasyStack();
-//        stack.push(1);
-//        stack.push(65);
-//        stack.push(-564);
-//        stack.push(52);
+//        try {
+//            System.out.println(stack.getMax());
+//        } catch (CustomException e) {
+//            System.out.println(e.getMessage());
+//        }
 //
-//        System.out.println(stack);
-//
-//        System.out.println(stack.getMax());
-//        System.out.println(stack.getMin());
+//        try {
+//            System.out.println(stack.getMin());
+//        } catch (CustomException e) {
+//            System.out.println(e.getMessage());
+//        }
 //
 //        System.out.println(stack.size());
 //
-//        try {
-//            stack.pop();
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        System.out.println(stack);
-//
-//        try {
-//            stack.pop();
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        System.out.println(stack);
-//
-//        try {
-//            stack.pop();
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        try {
-//            stack.pop();
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        try {
-//            stack.pop();
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
+        for (int i = 0; i < 8; i++) {
+            try {
+                System.out.println(stack.pop());
+            } catch (CustomException e) {
+                System.out.println(e.getMessage());
+            }
+
+            System.out.println(stack);
+        }
+
+
     }
 }
