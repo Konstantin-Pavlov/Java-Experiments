@@ -1,6 +1,5 @@
 package org.example;
 
-import MyExceptions.CustomException;
 import org.example.stack.StackWithoutCollections;
 
 public class Main {
@@ -14,30 +13,13 @@ public class Main {
 
         System.out.println(stack);
 
-//        try {
-//            System.out.println(stack.getMax());
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        try {
-//            System.out.println(stack.getMin());
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        System.out.println(stack.size());
-//
-        for (int i = 0; i < 8; i++) {
-            try {
-                System.out.println(stack.pop());
-            } catch (CustomException e) {
-                System.out.println(e.getMessage());
-            }
+        System.out.println(stack.getMax());
 
-            System.out.println(stack);
+        for (int i = 0; i < 8; i++) {
+            System.out.println(stack.pop());
         }
 
-
+        System.out.println(stack);
     }
+
 }
