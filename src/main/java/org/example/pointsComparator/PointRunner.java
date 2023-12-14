@@ -6,15 +6,15 @@ import java.util.stream.IntStream;
 
 public class PointRunner {
     public static void main(String[] args) {
-        Point[] points = new Point[]{
+        Point[] students = new Point[]{
                 new Point(1, 2),
                 new Point(3, 7),
                 new Point(-2, 3),
                 new Point(1, 1),
                 new Point(3, 5)
         };
-        Arrays.sort(points);
-        Arrays.stream(points).forEach(System.out::println);
+        Arrays.sort(students);
+        Arrays.stream(students).forEach(System.out::println);
 
 //        withUserInput();
     }
