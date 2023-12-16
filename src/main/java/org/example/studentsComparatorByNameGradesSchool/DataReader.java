@@ -5,8 +5,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DataReader {
-    private static final List<School> schools = readSchoolData();
-//    private static final List<School> schools = readUserInput();
+    private static final List<School> schools = readSchoolData(); // with prepared data
+//    private static final List<School> schools = readUserInput(); // reading user input
 
     private DataReader() {
     }
