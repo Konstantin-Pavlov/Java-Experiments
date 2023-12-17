@@ -47,7 +47,7 @@ public class LinkedListImplementation<T> {
         this.size++;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.head == null;
     }
 
@@ -65,7 +65,7 @@ public class LinkedListImplementation<T> {
         return popValue;
     }
 
-    public void print(){
+    public void print() {
         if (isEmpty()) {
             System.err.println("list is empty");
         }
@@ -75,5 +75,21 @@ public class LinkedListImplementation<T> {
             current = current.getNext();
         }
         System.out.println();
+    }
+
+    public void set(int index, T value) throws CustomException {
+        if (index == 0 && isEmpty()) {
+            this.head = new Node<T>(value);
+        } else if (index > size()) {
+            throw new CustomException("index more than array size");
+        } else if (index < 0) {
+            throw new CustomException("negative index");
+        } else {
+            Node<T> current = this.head;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+            current.setData(value);
+        }
     }
 }
