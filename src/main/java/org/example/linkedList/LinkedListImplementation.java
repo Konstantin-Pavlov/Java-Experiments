@@ -2,6 +2,8 @@ package org.example.linkedList;
 
 import MyExceptions.CustomException;
 
+// todo ->  remove(index), insert(index, value)
+
 public class LinkedListImplementation<T> {
     private int size;
     private Node<T> head;
@@ -57,11 +59,17 @@ public class LinkedListImplementation<T> {
         }
         Node<T> current = this.head;
         T popValue;
-        while (current.getNext().getNext() != null) {
-            current = current.getNext();
+        if (current.getNext() == null) {
+            popValue = current.getData();
+            this.head = null;
+        } else {
+            while (current.getNext().getNext() != null) {
+                current = current.getNext();
+            }
+            popValue = current.getNext().getData();
+            current.setNext(null);
         }
-        popValue = current.getNext().getData();
-        current.setNext(null);
+        this.size--;
         return popValue;
     }
 
@@ -78,12 +86,22 @@ public class LinkedListImplementation<T> {
     }
 
     public void set(int index, T value) throws CustomException {
-        if (index == 0 && isEmpty()) {
-            this.head = new Node<T>(value);
-        } else if (index > size()) {
+        if (index > size()) {
             throw new CustomException("index more than array size");
         } else if (index < 0) {
             throw new CustomException("negative index");
+        } else if (isEmpty()) {
+            this.head = new Node<T>(value);
+            this.size++;
+        }
+        // если вставка на место после последнего элемента
+        else if (index == size()) {
+            this.size++;
+            Node<T> current = this.head;
+            for (int i = 0; i < index-1; i++) {
+                current = current.getNext();
+            }
+            current.setNext(new Node<>(value));
         } else {
             Node<T> current = this.head;
             for (int i = 0; i < index; i++) {
@@ -93,3 +111,5 @@ public class LinkedListImplementation<T> {
         }
     }
 }
+
+
