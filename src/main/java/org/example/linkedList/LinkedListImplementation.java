@@ -71,7 +71,7 @@ public class LinkedListImplementation<T> {
         }
         Node<T> current = this.head;
         while (current != null) {
-            System.out.print(current.getData() + " ");
+            System.out.printf("%-3s ", current.getData());
             current = current.getNext();
         }
         System.out.println();
