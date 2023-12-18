@@ -2,7 +2,7 @@ package org.example.linkedList;
 
 import MyExceptions.CustomException;
 
-// todo find(value) ->  индекс объекта должен возвращать
+// todo find(value) ->  индекс объекта должен возвращать или -1
 
 public class LinkedListImplementation<T> {
     private int size;
