@@ -105,19 +105,6 @@ public class LinkedListImplementation<T> {
         return popValue;
     }
 
-    private String getValues() {
-        if (isEmpty()) {
-            System.err.println("list is empty");
-        }
-        StringBuilder sb = new StringBuilder();
-        Node<T> current = this.head;
-        while (current != null) {
-            sb.append(String.format("%-3s ", current.getData()));
-            current = current.getNext();
-        }
-        return sb.toString();
-    }
-
     public void set(int index, T value) throws CustomException {
         if (index > size()) {
             throw new CustomException("index more than array size");
@@ -167,6 +154,19 @@ public class LinkedListImplementation<T> {
             current.setNext(current.getNext().getNext());
         }
         this.size--;
+    }
+
+    private String getValues() {
+        if (isEmpty()) {
+            System.err.println("list is empty");
+        }
+        StringBuilder sb = new StringBuilder();
+        Node<T> current = this.head;
+        while (current != null) {
+            sb.append(String.format("%-3s ", current.getData()));
+            current = current.getNext();
+        }
+        return sb.toString();
     }
 
     @Override
