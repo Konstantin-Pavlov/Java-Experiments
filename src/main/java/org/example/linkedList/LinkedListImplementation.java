@@ -2,7 +2,10 @@ package org.example.linkedList;
 
 import MyExceptions.CustomException;
 
-// todo find(value) ->  индекс объекта должен возвращать или -1
+// todo - check for null
+// todo - extract checks in method
+// todo - collection that takes any type (object?)
+
 
 public class LinkedListImplementation<T> {
     private int size;
@@ -15,6 +18,19 @@ public class LinkedListImplementation<T> {
 
     public int size() {
         return this.size;
+    }
+
+    // find(value) ->  должен возвращать индекс объекта  или -1
+    public int find(T value){
+        // todo checks
+        Node<T> current = this.head;
+        for (int i = 0; i < size(); i++) {
+            if(current.getData() == value){
+                return i;
+            }
+            current = current.getNext();
+        }
+        return -1;
     }
 
     public T get(int index) throws CustomException {
