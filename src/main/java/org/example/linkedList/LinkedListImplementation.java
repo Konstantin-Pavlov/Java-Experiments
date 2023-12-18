@@ -98,7 +98,7 @@ public class LinkedListImplementation<T> {
         else if (index == size()) {
             this.size++;
             Node<T> current = this.head;
-            for (int i = 0; i < index-1; i++) {
+            for (int i = 0; i < index - 1; i++) {
                 current = current.getNext();
             }
             current.setNext(new Node<>(value));
@@ -110,6 +110,32 @@ public class LinkedListImplementation<T> {
             current.setData(value);
         }
     }
+
+    public void remove(int index) throws CustomException {
+        if (index > size()) {
+            throw new CustomException("index more than array size");
+        } else if (index < 0) {
+            throw new CustomException("negative index");
+        } else if (isEmpty()) {
+            throw new CustomException("array is empty");
+        } else if (index == size()) {
+            Node<T> current = this.head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.getNext();
+            }
+            current.setNext(null);
+        } else if (index == 0) {
+            this.head = this.head.getNext();
+        } else {
+            Node<T> current = this.head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
+        }
+        this.size--;
+    }
+
 }
 
 
