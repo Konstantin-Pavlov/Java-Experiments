@@ -2,7 +2,7 @@ package org.example.linkedList;
 
 import MyExceptions.CustomException;
 
-// todo ->  remove(index), insert(index, value)
+// todo find(value) ->  индекс объекта должен возвращать
 
 public class LinkedListImplementation<T> {
     private int size;
@@ -53,6 +53,38 @@ public class LinkedListImplementation<T> {
         return this.head == null;
     }
 
+    public void insert(int index, T value) throws CustomException {
+        if (index > size()) { // если больше на 1, то вызвать add?
+            throw new CustomException("index more than array size");
+        } else if (index < 0) {
+            throw new CustomException("negative index");
+        } else if (isEmpty()) { // создать первую ноду?
+            throw new CustomException("array is empty");
+        }
+        this.size++;
+        Node<T> current = this.head;
+        if (index == size()) {
+
+            for (int i = 0; i < index - 1; i++) {
+                current = current.getNext();
+            }
+            current.setNext(new Node<>(value));
+        }
+//        else if (index == 0) {
+//            this.head = this.head.getNext();
+//        }
+        else {
+            for (int i = 0; i < index - 1; i++) {
+                current = current.getNext();
+            }
+            Node<T> insertion = new Node<>(value);
+            insertion.setNext(current.getNext());
+            current.setNext(insertion);
+
+
+        }
+    }
+
     public T pop() throws CustomException {
         if (isEmpty()) {
             throw new CustomException("array is empty");
@@ -73,16 +105,17 @@ public class LinkedListImplementation<T> {
         return popValue;
     }
 
-    public void print() {
+    private String getValues() {
         if (isEmpty()) {
             System.err.println("list is empty");
         }
+        StringBuilder sb = new StringBuilder();
         Node<T> current = this.head;
         while (current != null) {
-            System.out.printf("%-3s ", current.getData());
+            sb.append(String.format("%-3s ", current.getData()));
             current = current.getNext();
         }
-        System.out.println();
+        return sb.toString();
     }
 
     public void set(int index, T value) throws CustomException {
@@ -91,7 +124,7 @@ public class LinkedListImplementation<T> {
         } else if (index < 0) {
             throw new CustomException("negative index");
         } else if (isEmpty()) {
-            this.head = new Node<T>(value);
+            this.head = new Node<>(value);
             this.size++;
         }
         // если вставка на место после последнего элемента
@@ -136,6 +169,11 @@ public class LinkedListImplementation<T> {
         this.size--;
     }
 
+    @Override
+    public String toString() {
+        return "size = " + size + "\n" +
+                "values: " + getValues() + "\n";
+    }
 }
 
 
