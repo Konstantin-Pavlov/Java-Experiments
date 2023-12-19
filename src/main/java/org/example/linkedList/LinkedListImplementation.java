@@ -8,24 +8,24 @@ import MyExceptions.CustomException;
 
 
 public class LinkedListImplementation<T> {
-    private int size;
+    private int listSize;
     private Node<T> head;
 
     public LinkedListImplementation() {
         this.head = null;
-        this.size = 0;
+        this.listSize = 0;
     }
 
     public int size() {
-        return this.size;
+        return this.listSize;
     }
 
     // find(value) ->  должен возвращать индекс объекта  или -1
-    public int find(T value){
+    public int find(T value) {
         // todo checks
         Node<T> current = this.head;
         for (int i = 0; i < size(); i++) {
-            if(current.getData() == value){
+            if (current.getData() == value) {
                 return i;
             }
             current = current.getNext();
@@ -33,15 +33,12 @@ public class LinkedListImplementation<T> {
         return -1;
     }
 
-    public T get(int index) throws CustomException {
-        if (isEmpty()) {
-            throw new CustomException("array is empty");
-        }
-        if (index < 0) {
-            throw new CustomException("negative index");
-        }
-        if (index > size()) {
-            throw new CustomException("index more than array size");
+    public T get(int index) {
+        try {
+            checkIndex(index);
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
         Node<T> current = this.head;
         for (int i = 0; i < index; i++) {
@@ -49,6 +46,7 @@ public class LinkedListImplementation<T> {
         }
         return current.getData();
     }
+
 
     public void add(T value) {
         Node<T> newNode = new Node<>(value);
@@ -62,22 +60,21 @@ public class LinkedListImplementation<T> {
             }
             current.setNext(newNode);
         }
-        this.size++;
+        this.listSize++;
     }
 
     public boolean isEmpty() {
         return this.head == null;
     }
 
-    public void insert(int index, T value) throws CustomException {
-        if (index > size()) { // если больше на 1, то вызвать add?
-            throw new CustomException("index more than array size");
-        } else if (index < 0) {
-            throw new CustomException("negative index");
-        } else if (isEmpty()) { // создать первую ноду?
-            throw new CustomException("array is empty");
+    public void insert(int index, T value) {
+        try {
+            checkIndex(index);
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+            return;
         }
-        this.size++;
+        this.listSize++;
         Node<T> current = this.head;
         if (index == size()) {
 
@@ -101,9 +98,12 @@ public class LinkedListImplementation<T> {
         }
     }
 
-    public T pop() throws CustomException {
-        if (isEmpty()) {
-            throw new CustomException("array is empty");
+    public T pop() {
+        try {
+            checkIfEmpty();
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
         Node<T> current = this.head;
         T popValue;
@@ -117,22 +117,25 @@ public class LinkedListImplementation<T> {
             popValue = current.getNext().getData();
             current.setNext(null);
         }
-        this.size--;
+        this.listSize--;
         return popValue;
     }
 
-    public void set(int index, T value) throws CustomException {
-        if (index > size()) {
-            throw new CustomException("index more than array size");
-        } else if (index < 0) {
-            throw new CustomException("negative index");
-        } else if (isEmpty()) {
+    public void set(int index, T value) {
+        try {
+            checkForNegativeIndex(index);
+            checkIfIndexMoreThanSize(index);
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        if (isEmpty()) {
             this.head = new Node<>(value);
-            this.size++;
+            this.listSize++;
         }
         // если вставка на место после последнего элемента
         else if (index == size()) {
-            this.size++;
+            this.listSize++;
             Node<T> current = this.head;
             for (int i = 0; i < index - 1; i++) {
                 current = current.getNext();
@@ -147,14 +150,14 @@ public class LinkedListImplementation<T> {
         }
     }
 
-    public void remove(int index) throws CustomException {
-        if (index > size()) {
-            throw new CustomException("index more than array size");
-        } else if (index < 0) {
-            throw new CustomException("negative index");
-        } else if (isEmpty()) {
-            throw new CustomException("array is empty");
-        } else if (index == size()) {
+    public void remove(int index) {
+        try {
+            checkIndex(index);
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        if (index == size()) {
             Node<T> current = this.head;
             for (int i = 0; i < index - 1; i++) {
                 current = current.getNext();
@@ -169,12 +172,13 @@ public class LinkedListImplementation<T> {
             }
             current.setNext(current.getNext().getNext());
         }
-        this.size--;
+        this.listSize--;
     }
 
     private String getValues() {
         if (isEmpty()) {
             System.err.println("list is empty");
+            return "list is empty";
         }
         StringBuilder sb = new StringBuilder();
         Node<T> current = this.head;
@@ -185,9 +189,33 @@ public class LinkedListImplementation<T> {
         return sb.toString();
     }
 
+    private void checkIndex(int index) throws CustomException {
+        checkIfEmpty();
+        checkForNegativeIndex(index);
+        checkIfIndexMoreThanSize(index);
+    }
+
+    private void checkIfIndexMoreThanSize(int index) throws CustomException {
+        if (index > size()) {
+            throw new CustomException("index more than array size");
+        }
+    }
+
+    private static void checkForNegativeIndex(int index) throws CustomException {
+        if (index < 0) {
+            throw new CustomException("negative index");
+        }
+    }
+
+    private void checkIfEmpty() throws CustomException {
+        if (isEmpty()) {
+            throw new CustomException("array is empty");
+        }
+    }
+
     @Override
     public String toString() {
-        return "size = " + size + "\n" +
+        return "size = " + size() + "\n" +
                 "values: " + getValues() + "\n";
     }
 }
