@@ -2,11 +2,6 @@ package org.example.linkedList;
 
 import MyExceptions.CustomException;
 
-// todo - check for null
-// todo - extract checks in method
-// todo - collection that takes any type (object?)
-
-
 public class LinkedListImplementation<T> {
     private int listSize;
     private Node<T> head;
@@ -22,7 +17,11 @@ public class LinkedListImplementation<T> {
 
     // find(value) ->  должен возвращать индекс объекта  или -1
     public int find(T value) {
-        // todo checks
+        try {
+            nullCheck(value);
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+        }
         Node<T> current = this.head;
         for (int i = 0; i < size(); i++) {
             if (current.getData() == value) {
@@ -49,6 +48,12 @@ public class LinkedListImplementation<T> {
 
 
     public void add(T value) {
+        try {
+            nullCheck(value);
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+        }
+
         Node<T> newNode = new Node<>(value);
 
         if (head == null) {
@@ -70,6 +75,7 @@ public class LinkedListImplementation<T> {
     public void insert(int index, T value) {
         try {
             checkIndex(index);
+            nullCheck(value);
         } catch (CustomException e) {
             System.out.println(e.getMessage());
             return;
@@ -125,6 +131,7 @@ public class LinkedListImplementation<T> {
         try {
             checkForNegativeIndex(index);
             checkIfIndexMoreThanSize(index);
+            nullCheck(value);
         } catch (CustomException e) {
             System.out.println(e.getMessage());
             return;
@@ -200,6 +207,13 @@ public class LinkedListImplementation<T> {
             throw new CustomException("index more than array size");
         }
     }
+
+    private static <T> void nullCheck(T value) throws CustomException {
+        if (value == null) {
+            throw new CustomException("illegal value - null");
+        }
+    }
+
 
     private static void checkForNegativeIndex(int index) throws CustomException {
         if (index < 0) {
