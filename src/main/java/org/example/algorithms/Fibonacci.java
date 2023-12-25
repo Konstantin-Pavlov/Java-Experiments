@@ -37,6 +37,7 @@ public class Fibonacci {
         return justRecursion(n - 1) + justRecursion(n - 2);
     }
 
+    // very fast algorithm
     public static long effective(int n) {
         if (n == 0) {
             return 0;
