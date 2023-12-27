@@ -48,17 +48,17 @@ public class Point<T extends Number> {
     }
 
     @SuppressWarnings("unchecked")
-    public void translateX(double xShift) {
-        this.x = (T) Double.valueOf(this.x.doubleValue() + xShift);
+    public void translateX(T xShift) {
+        this.x = (T) Double.valueOf(this.x.doubleValue() + xShift.doubleValue());
     }
 
     @SuppressWarnings("unchecked")
-    public void translateY(double yShift) {
-        this.y = (T) Double.valueOf(this.x.doubleValue() + yShift);
+    public void translateY(T yShift) {
+        this.y = (T) Double.valueOf(this.x.doubleValue() + yShift.doubleValue());
     }
 
     // Method to translate a point by specified amounts
-    public void translate(double deltaX, double deltaY) {
+    public void translateXY(T deltaX, T deltaY) {
         this.translateX(deltaX);
         this.translateY(deltaY);
     }
