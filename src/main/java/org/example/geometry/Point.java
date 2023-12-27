@@ -3,8 +3,8 @@ package org.example.geometry;
 import java.util.Objects;
 
 public class Point<T extends Number> {
-    private final T x;
-    private final T y;
+    private T x;
+    private T y;
 
     public Point(T x, T y) {
         this.x = x;
@@ -47,9 +47,20 @@ public class Point<T extends Number> {
         return new Point<>(this.x.doubleValue() * factor, this.y.doubleValue() * factor);
     }
 
+    @SuppressWarnings("unchecked")
+    public void translateX(double xShift) {
+        this.x = (T) Double.valueOf(this.x.doubleValue() + xShift);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void translateY(double yShift) {
+        this.y = (T) Double.valueOf(this.x.doubleValue() + yShift);
+    }
+
     // Method to translate a point by specified amounts
-    public Point<?> translate(double deltaX, double deltaY) {
-        return new Point<>(this.x.doubleValue() + deltaX, this.y.doubleValue() + deltaY);
+    public void translate(double deltaX, double deltaY) {
+        this.translateX(deltaX);
+        this.translateY(deltaY);
     }
 
     // Method to clone a point
