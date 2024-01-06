@@ -4,7 +4,6 @@ import org.example.stack.StackWithoutCollections;
 
 public class Main {
     public static void main(String[] args) {
-
         StackWithoutCollections stack = new StackWithoutCollections();
         stack.push(1);
         stack.push(65);
