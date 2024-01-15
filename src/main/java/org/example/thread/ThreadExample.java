@@ -13,17 +13,13 @@ public class ThreadExample {
     }
 
     private static void withMyRunnableExample() {
-        Thread thread1 = new Thread(new Runner());
-        Thread thread2 = new Thread(new Runner());
-        thread1.start();
-        thread2.start();
+        Thread thread = new Thread(new Runner());
+        thread.start();
     }
 
     private static void withMyThreadExample() {
-        MyThread thread1 = new MyThread();
-        MyThread thread2 = new MyThread();
-        thread1.start();
-        thread2.start();
+        MyThread thread = new MyThread();
+        thread.start();
     }
 
     public static void runningForLoop(String name) {
