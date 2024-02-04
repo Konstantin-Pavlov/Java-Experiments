@@ -17,5 +17,6 @@ public class PredicateExample {
 
         System.out.println(isPositive.test(5)); // true
         System.out.println(isPositive.test(-7)); // false
+
     }
 }
