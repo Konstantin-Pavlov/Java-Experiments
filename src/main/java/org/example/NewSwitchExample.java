@@ -25,3 +25,23 @@ public class NewSwitchExample {
 
     }
 }
+
+class DayTypeChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int dayNumber = scanner.nextInt();
+
+        String dayType;
+
+        switch (dayNumber) {
+            case 1, 2, 3, 4, 5 -> dayType = "Working day";
+            case 6 -> dayType = "Saturday";
+            case 7 -> dayType = "Sunday";
+            default -> dayType = "ERROR";
+        }
+
+        System.out.println(dayType);
+
+        scanner.close();
+    }
+}
