@@ -44,4 +44,32 @@ public class AtomicIntegerExampleWithLambda {
                 });
         scanner.close();
     }
+
+
+    /*
+    Sample Input 1:
+    7 #
+    Sample Output 1:
+       #
+      ###
+     #####
+    #######
+    */
+    private static void drawTriangle(int n, String symbol) {
+        AtomicInteger i = new AtomicInteger(n / 2);
+        AtomicInteger d = new AtomicInteger(n % 2 == 0 ? 2 : 1);
+        IntStream.rangeClosed(1, n)
+                .boxed()
+                .sorted(Comparator.reverseOrder())
+                .mapToInt(Integer::intValue)
+                .forEach(var -> {
+                    if (i.get() < 0 || d.get() > n) {
+                        return;
+                    }
+                    String pattern = " ".repeat(i.get()) + symbol.repeat(d.get());
+                    System.out.println(pattern);
+                    i.decrementAndGet();
+                    d.addAndGet(2);
+                });
+    }
 }

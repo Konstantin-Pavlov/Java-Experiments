@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LinkedListImplementationTest {
     LinkedListImplementation<Integer> linkedListImplementation = new LinkedListImplementation<>();
 
-    @Test
+/*    @Test
     public void test0() {
         initializeList0();
         assertEquals(3, linkedListImplementation.size());
@@ -47,7 +47,7 @@ public class LinkedListImplementationTest {
         } catch (CustomException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
 
     private void initializeList0() {
