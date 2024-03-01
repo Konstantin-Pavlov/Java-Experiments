@@ -3,6 +3,7 @@ package org.example.fuctionalInterfaceExample.refToConstructor;
 public class Main {
     public static void main(String[] args) {
         ClassCreator creator = MyClass::new;
+
         // same:
         creator = new ClassCreator() { //  n -> new MyClass(n);
             @Override
