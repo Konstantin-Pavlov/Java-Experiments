@@ -1,4 +1,4 @@
-package org.example.fuctionalInterfaceExample.cat.staticAndNonStatic;
+package org.example.fuctionalInterfaceExample.staticAndNonStatic;
 
 public class Test {
     private int code;
