@@ -13,8 +13,9 @@ public class IteratorWithPredicateRunner {
         iterator1.hasNext();
         iterator1.hasNext();
         while (iterator1.hasNext()){
-            System.out.println(iterator1.next());
+            System.out.print(iterator1.next() + " ");
         }
+        System.out.println();
 
         System.out.println(iterator2.hasNext());
         System.out.println(iterator2.next());

@@ -13,14 +13,14 @@ public class IteratorWithPredicate<T> {
         this.predicate = predicate;
         this.currentIndex = 0;
     }
-//update current index
+
+    //update current index
     public boolean hasNext() {
-        int tmpIndex = currentIndex;
-        while (tmpIndex < collection.length) {
-            if (checkCondition(collection[tmpIndex])) {
+        while (currentIndex < collection.length) {
+            if (checkCondition(collection[currentIndex])) {
                 return true;
             }
-            tmpIndex++;
+            currentIndex++;
         }
         return false;
     }
@@ -28,12 +28,7 @@ public class IteratorWithPredicate<T> {
     // without while
     public T next() {
         if (hasNext()) {
-            while (currentIndex < collection.length) {
-                if (checkCondition(collection[currentIndex])) {
-                    return collection[currentIndex++];
-                }
-                currentIndex++;
-            }
+            return collection[currentIndex++];
         }
         throw new NoSuchElementException("There are no elements matching the predicate");
 
