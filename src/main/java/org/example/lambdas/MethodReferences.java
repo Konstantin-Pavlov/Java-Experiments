@@ -2,7 +2,7 @@ package org.example.lambdas;
 
 public class MethodReferences {
     public static void main(String[] args) {
-        int[] nums = { -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] nums = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         System.out.println(sum(nums, ExpressionHelper::isEven));
 
         Expression expr = ExpressionHelper::isPositive; // 24
@@ -33,7 +33,8 @@ class ExpressionHelper {
     static boolean isPositive(int n) {
         return n > 0;
     }
-     boolean isNegative(int n) {
+
+    boolean isNegative(int n) {
         return n < 0;
     }
 

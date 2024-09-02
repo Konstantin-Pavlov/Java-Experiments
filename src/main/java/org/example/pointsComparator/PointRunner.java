@@ -8,11 +8,11 @@ import java.util.stream.IntStream;
 
 public class PointRunner {
     public static void main(String[] args) {
-        Point[] points = getTwoPoints();
-        Point.showTheComparisonResultOfTwoPoints(points);
+//        Point[] points = getTwoPoints();
+//        Point.showTheComparisonResultOfTwoPoints(points);
 
 
-//        withoutUserInput();
+        withoutUserInput();
 //        withUserInput();
     }
 
