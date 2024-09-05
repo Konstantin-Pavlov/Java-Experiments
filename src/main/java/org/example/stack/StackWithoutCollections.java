@@ -1,6 +1,6 @@
 package org.example.stack;
 
-import MyExceptions.CustomException;
+import org.example.MyExceptions.CustomException;
 
 import java.util.Arrays;
 
