@@ -1,11 +1,11 @@
 package org.example.geometry;
 
 public class Triangle<T extends Number> {
-    Point<T> p1;
-    Point<T> p2;
-    Point<T> p3;
+    PointGeneric<T> p1;
+    PointGeneric<T> p2;
+    PointGeneric<T> p3;
 
-    Triangle(Point<T> p1, Point<T> p2, Point<T> p3) {
+    Triangle(PointGeneric<T> p1, PointGeneric<T> p2, PointGeneric<T> p3) {
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;

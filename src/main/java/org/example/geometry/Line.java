@@ -6,18 +6,18 @@ package org.example.geometry;
  * by using the fields, x and y, from each of the two Point fields.
  */
 public class Line<T extends Number> {
-    private final Point<T> p1;
-    private final Point<T> p2;
+    private final PointGeneric<T> p1;
+    private final PointGeneric<T> p2;
 
-    public Line(Point<T> p1, Point<T> p2) {
+    public Line(PointGeneric<T> p1, PointGeneric<T> p2) {
         this.p1 = p1;
         this.p2 = p2;
     }
 
     //  второй конструктор
     public Line(T x1, T y1, T x2, T y2) {
-        this.p1 = new Point<>(x1, y1);
-        this.p2 = new Point<>(x2, y2);
+        this.p1 = new PointGeneric<>(x1, y1);
+        this.p2 = new PointGeneric<>(x2, y2);
     }
 
     public double getSlope() {
@@ -42,7 +42,7 @@ public class Line<T extends Number> {
         p2.translateXY(shiftX, shiftY);
     }
 
-    public Point<?> getMidpoint() {
+    public PointGeneric<?> getMidpoint() {
         return this.p1.midpoint(p2);
     }
 }
