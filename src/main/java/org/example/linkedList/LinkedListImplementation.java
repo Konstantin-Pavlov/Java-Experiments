@@ -1,6 +1,6 @@
 package org.example.linkedList;
 
-import MyExceptions.CustomException;
+import org.example.MyExceptions.CustomException;
 
 public class LinkedListImplementation<T> {
     private int listSize;

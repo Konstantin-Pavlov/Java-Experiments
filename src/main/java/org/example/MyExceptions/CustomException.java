@@ -1,4 +1,4 @@
-package MyExceptions;
+package org.example.MyExceptions;
 
 public class CustomException extends Exception{
     public CustomException() {
