@@ -1,3 +1,5 @@
+package org.example;
+
 import org.example.salaryCalculationWithRateEnum.Rate;
 import org.junit.jupiter.api.Test;
 
