@@ -54,6 +54,16 @@ public class CustomArrayList<T extends Comparable<T>> {
     }
 
     /**
+     *
+     * @param element
+     * @return true if list contains an element
+     */
+    public boolean contains(T element) {
+        // todo : implement
+        return true;
+    }
+
+    /**
      * Deletes the element at the specified index.
      * Shifts any subsequent elements to the left (subtracts one from their indices).
      * The last element is set to null to avoid memory leaks.
@@ -61,10 +71,13 @@ public class CustomArrayList<T extends Comparable<T>> {
      * @param index the index of the element to be removed
      * @throws IndexOutOfBoundsException (from indexCheck method call) if the index is out of range (index < 0 || index >= size)
      */
-    public void delete(int index) {
+    @SuppressWarnings("unchecked")
+    public T delete(int index) {
         indexCheck(index);
+        T element = (T) data[index];
         System.arraycopy(data, index + 1, data, index, size - index - 1);
         data[--size] = null; // Clear the last element
+        return element;
     }
 
     /**

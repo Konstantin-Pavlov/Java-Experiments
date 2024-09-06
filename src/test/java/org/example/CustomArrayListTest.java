@@ -93,19 +93,25 @@ public class CustomArrayListTest {
     @Test
     public void test8() {
         CustomArrayList<Double> list = new CustomArrayList<>();
+        double d;
         list.add(3D);
         list.add(1.65);
         list.add(0.659);
         assertEquals(String.format("CustomArrayList [size=3, data=3.0,1.65,0.659]%n"), list.toString());
-        list.delete(2);
+
+        d = list.delete(2);
+        assertEquals(0.659, d);
         assertEquals(String.format("CustomArrayList [size=2, data=3.0,1.65]%n"), list.toString());
-        list.delete(0);
+
+        d = list.delete(0);
         assertEquals(String.format("CustomArrayList [size=1, data=1.65]%n"), list.toString());
+        assertEquals(3.0, d);
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(1));
 
-        list.delete(0);
+        d = list.delete(0);
         assertEquals(String.format("CustomArrayList [size=0, data=]%n"), list.toString());
+        assertEquals(1.65, d);
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.delete(0));
 
