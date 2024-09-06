@@ -1,10 +1,16 @@
 package org.example.CustomArrayList;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.example.sortings.CustomQuickSort;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -16,9 +22,11 @@ import java.util.stream.Collectors;
  *
  * @param <T> the type of elements in this list, which must extend {@link Comparable}
  */
+
 public class CustomArrayList<T extends Comparable<T>> {
     private Object[] data;
     private int size;
+    private final Logger logger;
 
     /**
      * Constructs an empty list with an initial capacity of 8.
@@ -26,6 +34,7 @@ public class CustomArrayList<T extends Comparable<T>> {
     public CustomArrayList() {
         this.data = new Object[8];
         this.size = 0;
+        this.logger = Logger.getLogger(this.getClass().getName());
     }
 
     /**
@@ -54,13 +63,23 @@ public class CustomArrayList<T extends Comparable<T>> {
     }
 
     /**
+     * Checks if the list contains the specified element.
      *
-     * @param element
-     * @return true if list contains an element
+     * @param element the element to check for
+     * @return true if the list contains the element, false otherwise
      */
     public boolean contains(T element) {
-        // todo : implement
-        return true;
+        if (size == 0) {
+            logger.warning("the list is empty");
+            return false;
+        }
+        if (element == null) {
+            return Arrays.stream(data, 0, size)
+                    .anyMatch(Objects::isNull);
+        }
+        return Arrays.stream(data, 0, size)
+                .filter(Objects::nonNull)
+                .anyMatch(e -> e.equals(element));
     }
 
     /**

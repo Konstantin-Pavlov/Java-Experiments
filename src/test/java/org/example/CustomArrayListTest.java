@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -221,6 +222,31 @@ public class CustomArrayListTest {
         // Sort by distance from origin
         list.sort(Comparator.comparingDouble(p -> p.distanceTo(new PointGeneric<>(0.0, 0.0))));
         assertEquals(String.format("CustomArrayList [size=4, data=Point{x = 0,000, y = 0,000},Point{x = 1,000, y = 2,000},Point{x = 3,000, y = 1,000},Point{x = 2,000, y = 7,000}]%n"), list.toString());
+    }
+
+    @Test
+    public void test16() {
+        CustomArrayList<String> list = new CustomArrayList<>();
+
+        // Test for empty list
+        assertFalse(list.contains("A"));
+
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        // Test for elements that are present
+        assertTrue(list.contains("A"));
+        assertTrue(list.contains("B"));
+        assertTrue(list.contains("C"));
+
+        // Test for elements that are not present
+        assertFalse(list.contains("D"));
+        assertFalse(list.contains("E"));
+
+        // Test for null element
+        list.add(null);
+        assertTrue(list.contains(null));
     }
 
 }
