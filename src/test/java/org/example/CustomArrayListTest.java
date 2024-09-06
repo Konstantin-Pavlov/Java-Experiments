@@ -7,6 +7,7 @@ import org.example.studentsComparatorByNameAndGrade.Student;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -247,6 +248,32 @@ public class CustomArrayListTest {
         // Test for null element
         list.add(null);
         assertTrue(list.contains(null));
+    }
+
+    @Test
+    public void customIteratorTest1() {
+        CustomArrayList<String> list = new CustomArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        list.forEach(stringBuilder::append);
+
+        assertEquals("ABC", stringBuilder.toString());
+    }
+
+    @Test
+    public void customIteratorTest2() {
+        CustomArrayList<Integer> list = new CustomArrayList<>();
+        AtomicInteger sum = new AtomicInteger();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        list.iterator().forEachRemaining(sum::addAndGet);
+
+        assertEquals(6, sum.get());
     }
 
 }

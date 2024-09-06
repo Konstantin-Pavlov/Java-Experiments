@@ -6,9 +6,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.example.sortings.CustomQuickSort;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -23,7 +26,7 @@ import java.util.stream.Collectors;
  * @param <T> the type of elements in this list, which must extend {@link Comparable}
  */
 
-public class CustomArrayList<T extends Comparable<T>> {
+public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
     private Object[] data;
     private int size;
     private final Logger logger;
@@ -35,6 +38,12 @@ public class CustomArrayList<T extends Comparable<T>> {
         this.data = new Object[8];
         this.size = 0;
         this.logger = Logger.getLogger(this.getClass().getName());
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new CustomListIterator();
     }
 
     /**
@@ -214,6 +223,20 @@ public class CustomArrayList<T extends Comparable<T>> {
                 .map(Object::toString)
                 .collect(Collectors.joining(","))
         );
+    }
+
+    private class CustomListIterator implements Iterator<T> {
+        private int currentIndex;
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public T next() {
+            return (T) data[currentIndex++];
+        }
     }
 }
 
