@@ -1,6 +1,5 @@
 package org.example.algorithms;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import util.ConsoleColors;
 
@@ -20,11 +19,19 @@ public class ShuffleCollection {
         System.out.println(list);
         List<Integer> shuffled = shuffle(list);
         System.out.println(shuffled);
+
+        System.out.println();
+
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        shuffleArray(nums);
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
     }
 
     private static List<Integer> shuffle(List<Integer> list) {
         Random random = new Random();
-        List<Integer> shuffled = new ArrayList<Integer>(list.size());
+        List<Integer> shuffled = new ArrayList<>(list.size());
         int counter = 0;
         int placeHolderSize = list.size() + list.size() - 1 + list.size() - 1 + 2;
         System.out.println(placeHolderSize);
@@ -90,6 +97,23 @@ public class ShuffleCollection {
                         ConsoleColors.RESET,
                 placeHolderSize
         );
+    }
+
+    /**
+     * Алгоритм Фишера-Йетса
+     * <p>
+     * Алгоритм заключается в том, чтобы проходить по массиву от конца к началу
+     * и на каждом шаге выбирать случайный элемент из всех еще не перемещенных элементов
+     * и менять его местами с текущим элементом.
+     */
+    private static void shuffleArray(int[] arr) {
+        Random rnd = new Random();
+        for (int i = arr.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            int temp = arr[index];
+            arr[index] = arr[i];
+            arr[i] = temp;
+        }
     }
 
 }
