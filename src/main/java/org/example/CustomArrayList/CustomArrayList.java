@@ -33,6 +33,9 @@ public class CustomArrayList<T> implements Iterable<T> {
         this.logger = Logger.getLogger(this.getClass().getName());
     }
 
+    /**
+     * @return an iterator over the elements in this list
+     */
     @NotNull
     @Override
     public Iterator<T> iterator() {
@@ -61,6 +64,25 @@ public class CustomArrayList<T> implements Iterable<T> {
     public T get(int index) {
         indexCheck(index);
         return data[index];
+    }
+
+    /**
+     * @return the number of elements in this list
+     */
+    public int size() {
+        return size;
+    }
+
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     *
+     * @param index   the index of the element to replace
+     * @param element the element to be stored at the specified position
+     * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size)
+     */
+    public void set(int index, T element) {
+        indexCheck(index);
+        data[index] = element;
     }
 
     /**
@@ -211,14 +233,23 @@ public class CustomArrayList<T> implements Iterable<T> {
         );
     }
 
+    /**
+     * CustomListIterator implementation.
+     */
     private class CustomListIterator implements Iterator<T> {
         private int currentIndex;
 
+        /**
+         * @return true if the iteration has more elements, false otherwise
+         */
         @Override
         public boolean hasNext() {
             return currentIndex < size;
         }
 
+        /**
+         * @return the next element in the iteration
+         */
         @Override
         public T next() {
             return data[currentIndex++];
