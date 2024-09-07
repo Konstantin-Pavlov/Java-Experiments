@@ -1,11 +1,6 @@
 package org.example;
 
 import org.example.CustomArrayList.CustomArrayList;
-import utils.GetDuration;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Main {
 
