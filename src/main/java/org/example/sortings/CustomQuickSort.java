@@ -1,5 +1,7 @@
 package org.example.sortings;
 
+import org.example.CustomArrayList.CustomArrayList;
+
 /**
  * A utility class that provides a generic implementation of the QuickSort algorithm.
  */
@@ -12,74 +14,69 @@ public class CustomQuickSort {
     }
 
     /**
-     * Sorts the specified array using the QuickSort algorithm.
+     * Sorts the specified CustomArrayList using the QuickSort algorithm.
      *
-     * @param array the array to be sorted
-     * @param <T>   the type of elements in the array, which must extend Comparable<T>
-     *
+     * @param list the CustomArrayList to be sorted
+     * @param <T>  the type of elements in the list, which must extend Comparable<T>
      * @throws IllegalArgumentException if the elements are not comparable
      */
-    public static <T extends Comparable<T>> void sort(T[] array) {
-        if (array == null || array.length < 2) {
+    public static <T extends Comparable<T>> void sort(CustomArrayList<T> list) {
+        if (list == null || list.size() < 2) {
             return;
         }
-        if (!(array[0] instanceof Comparable)) {
-            throw new IllegalArgumentException("Elements are not comparable");
-        }
-        quickSort(array, 0, array.length - 1);
+
+        quickSort(list, 0, list.size() - 1);
     }
 
     /**
      * Recursively sorts the subarrays before and after the partition index.
      *
-     * @param array the array to be sorted
-     * @param low   the starting index of the subarray to be sorted
-     * @param high  the ending index of the subarray to be sorted
-     * @param <T>   the type of elements in the array, which must extend Comparable<T>
+     * @param list the CustomArrayList to be sorted
+     * @param low  the starting index of the subarray to be sorted
+     * @param high the ending index of the subarray to be sorted
+     * @param <T>  the type of elements in the list, which must extend Comparable<T>
      */
-    private static <T extends Comparable<T>> void quickSort(T[] array, int low, int high) {
+    private static <T extends Comparable<T>> void quickSort(CustomArrayList<T> list, int low, int high) {
         if (low < high) {
-            int pivot = partition(array, low, high);
-            quickSort(array, low, pivot - 1);
-            quickSort(array, pivot + 1, high);
+            int pivot = partition(list, low, high);
+            quickSort(list, low, pivot - 1);
+            quickSort(list, pivot + 1, high);
         }
     }
 
     /**
-     * Partitions the array around the pivot element.
+     * Partitions the list around the pivot element.
      *
-     * @param array the array to be partitioned
-     * @param low   the starting index of the subarray to be partitioned
-     * @param high  the ending index of the subarray to be partitioned
-     * @param <T>   the type of elements in the array, which must extend Comparable<T>
+     * @param list the CustomArrayList to be partitioned
+     * @param low  the starting index of the subarray to be partitioned
+     * @param high the ending index of the subarray to be partitioned
+     * @param <T>  the type of elements in the list, which must extend Comparable<T>
      * @return the index of the pivot element after partitioning
      */
-    private static <T extends Comparable<T>> int partition(T[] array, int low, int high) {
-        T pivot = array[high];
+    private static <T extends Comparable<T>> int partition(CustomArrayList<T> list, int low, int high) {
+        T pivot = list.get(high);
         int i = (low - 1);
         for (int j = low; j < high; j++) {
-            if (array[j].compareTo(pivot) <= 0) {
+            if (list.get(j).compareTo(pivot) <= 0) {
                 i++;
-                swap(array, i, j);
+                swap(list, i, j);
             }
         }
-        swap(array, i + 1, high);
+        swap(list, i + 1, high);
         return i + 1;
     }
 
     /**
-     * Swaps the elements at the specified positions in the array.
+     * Swaps the elements at the specified positions in the list.
      *
-     * @param array the array in which to swap elements
-     * @param i     the index of one element to be swapped
-     * @param j     the index of the other element to be swapped
-     * @param <T>   the type of elements in the array, which must extend Comparable<T>
+     * @param list the CustomArrayList in which to swap elements
+     * @param i    the index of one element to be swapped
+     * @param j    the index of the other element to be swapped
+     * @param <T>  the type of elements in the list, which must extend Comparable<T>
      */
-    private static <T extends Comparable<T>> void swap(T[] array, int i, int j) {
-        T temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    private static <T extends Comparable<T>> void swap(CustomArrayList<T> list, int i, int j) {
+        T temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
     }
-
-
 }
