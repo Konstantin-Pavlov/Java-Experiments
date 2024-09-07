@@ -1,17 +1,10 @@
 package org.example.CustomArrayList;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
-import org.example.sortings.CustomQuickSort;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -25,17 +18,17 @@ import java.util.stream.Collectors;
  *
  * @param <T> the type of elements in this list, which must extend {@link Comparable}
  */
-
-public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
-    private Object[] data;
+public class CustomArrayList<T> implements Iterable<T> {
+    private T[] data;
     private int size;
     private final Logger logger;
 
     /**
      * Constructs an empty list with an initial capacity of 8.
      */
+    @SuppressWarnings("unchecked")
     public CustomArrayList() {
-        this.data = new Object[8];
+        this.data = (T[]) new Object[8];
         this.size = 0;
         this.logger = Logger.getLogger(this.getClass().getName());
     }
@@ -65,10 +58,9 @@ public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
      * @return the element at the specified position in this list
      * @throws IndexOutOfBoundsException (from indexCheck method call) if the index is out of range (index < 0 || index >= size)
      */
-    @SuppressWarnings("unchecked")
     public T get(int index) {
         indexCheck(index);
-        return (T) data[index];
+        return data[index];
     }
 
     /**
@@ -99,10 +91,9 @@ public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
      * @param index the index of the element to be removed
      * @throws IndexOutOfBoundsException (from indexCheck method call) if the index is out of range (index < 0 || index >= size)
      */
-    @SuppressWarnings("unchecked")
     public T delete(int index) {
         indexCheck(index);
-        T element = (T) data[index];
+        T element = data[index];
         System.arraycopy(data, index + 1, data, index, size - index - 1);
         data[--size] = null; // Clear the last element
         return element;
@@ -120,23 +111,17 @@ public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
     /**
      * Sorts the elements in this list in natural order.
      *
-     * <p>This method uses the {@link CustomQuickSort} class to sort the elements
+     * <p>This method uses the {@link Arrays#sort(Object[])} method to sort the elements
      * in the list. The elements must implement the {@link Comparable} interface
      * to be sorted. If the list contains fewer than two elements, the method
      * returns immediately.</p>
-     *
-     * @throws IllegalArgumentException if the elements are not comparable
      */
     @SuppressWarnings("unchecked")
     public void sort() {
         if (sizeLessThanTwo()) return;
-        checkIfInstanceofComparable();
-
-//        Arrays.sort(data, 0, size);
-
         T[] arrayToSort = (T[]) new Comparable[size];
         System.arraycopy(data, 0, arrayToSort, 0, size);
-        CustomQuickSort.sort(arrayToSort);
+        Arrays.sort(arrayToSort);
         System.arraycopy(arrayToSort, 0, data, 0, size);
     }
 
@@ -154,7 +139,7 @@ public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
         if (sizeLessThanTwo()) return;
         checkIfInstanceofComparable();
         // Create a new array of type T[] using reflection and copy elements from data
-        T[] arrayToSort =  (T[]) new Comparable[size];
+        T[] arrayToSort = (T[]) new Comparable[size];
         System.arraycopy(data, 0, arrayToSort, 0, size);
         Arrays.sort(arrayToSort, comparator);
         System.arraycopy(arrayToSort, 0, data, 0, size);
@@ -203,8 +188,9 @@ public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
     /**
      * Resizes the internal array to accommodate more elements.
      */
+    @SuppressWarnings("unchecked")
     private void resize() {
-        Object[] newData = new Object[data.length * 2];
+        T[] newData = (T[]) new Object[data.length * 2];
         System.arraycopy(data, 0, newData, 0, size);
         data = newData;
     }
@@ -227,15 +213,15 @@ public class CustomArrayList<T extends Comparable<T>> implements Iterable<T> {
 
     private class CustomListIterator implements Iterator<T> {
         private int currentIndex;
+
         @Override
         public boolean hasNext() {
             return currentIndex < size;
         }
 
         @Override
-        @SuppressWarnings("unchecked")
         public T next() {
-            return (T) data[currentIndex++];
+            return data[currentIndex++];
         }
     }
 }
