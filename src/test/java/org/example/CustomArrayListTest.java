@@ -4,7 +4,6 @@ import org.example.CustomArrayList.CustomArrayList;
 import org.example.entity.Person;
 import org.example.geometry.PointGeneric;
 import org.example.studentsComparatorByNameAndGrade.Student;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
@@ -275,7 +274,9 @@ public class CustomArrayListTest {
         list.iterator().forEachRemaining(sum::addAndGet);
 
         assertEquals(6, sum.get());
-    }    @Test
+    }
+
+    @Test
     public void customIteratorSetTest1() {
         CustomArrayList<Integer> list = new CustomArrayList<>();
         list.add(1);
@@ -288,11 +289,13 @@ public class CustomArrayListTest {
         list.set(0, 2);
         assertEquals(String.format("CustomArrayList [size=3, data=2,42,3]%n"), list.toString());
 
-                list.set(2, 4);
+        list.set(2, 4);
         assertEquals(String.format("CustomArrayList [size=3, data=2,42,4]%n"), list.toString());
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.set(3, 333));
-    } @Test
+    }
+
+    @Test
     public void customIteratorSetTest2() {
         CustomArrayList<String> list = new CustomArrayList<>();
         list.add("E1");
