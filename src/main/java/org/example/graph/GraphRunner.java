@@ -1,4 +1,4 @@
-package graph;
+package org.example.graph;
 //todo - добавьте вес рёбрам
 //todo - Измените его в принципе
 //todo - Измените его на направленный

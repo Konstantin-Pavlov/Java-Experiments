@@ -1,6 +1,6 @@
 package org.example.thread;
 
-import util.ConsoleColors;
+import org.example.util.ConsoleColors;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;

@@ -1,7 +1,7 @@
 package org.example.algorithms;
 
 import org.jetbrains.annotations.NotNull;
-import util.ConsoleColors;
+import org.example.util.ConsoleColors;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package graph;
+package org.example.graph;
 
 public interface Graph {
     void addVertex(String vertex);
