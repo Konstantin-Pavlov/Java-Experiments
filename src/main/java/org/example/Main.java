@@ -1,16 +1,48 @@
 package org.example;
 
-import org.example.CustomArrayList.CustomArrayList;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
+@Slf4j
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
+        log.info("Start");
+        log.warn("warn");
+        log.error("error");
+        log.trace("trace");
+        log.debug("debug");
 
+        List<Integer> list = new ArrayList<>();
+        Stream.of(1, 2, 3).forEach(list::add);
+        System.out.println(list);
+//        List<String> names = List.of("Alice", "Bob", "Alice", "Charlie");
+//        Map<String, Integer> namesMap = new LinkedHashMap<>();
+//        names.forEach(name -> namesMap.compute(name, (word, freq) -> freq == null ? 1 : freq + 1));
+//        namesMap.entrySet()
+//                .stream()
+//                .filter(entry -> entry.getValue() == 1)
+//                .findFirst()
+//                .ifPresentOrElse(
+//                        entry -> System.out.println(entry.getKey()),
+//                        () -> System.out.println("no unique name found")
+//                );
 
+//        names.forEach(name -> namesMap.put(name, !namesMap.containsKey(name)));
+//        System.out.println(namesMap);
+//        String firstUniqueName = names
+//                .stream()
+//                .filter(namesMap::get)
+//                .findFirst()
+//                .orElseThrow(() -> new RuntimeException("no unique name found"));
+//        System.out.println(firstUniqueName);
 
 //        int availableProcessors = Runtime.getRuntime().availableProcessors();
 //        System.out.println("Available processors (cores): " + availableProcessors);
@@ -45,7 +77,9 @@ public class Main {
 
     }
 
+
 }
+
 
 class Task implements Runnable {
     @Override
